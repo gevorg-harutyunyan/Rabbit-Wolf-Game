@@ -8,7 +8,8 @@ body {
     border-top: 1px solid #000;
 }
 
-select, button {
+select,
+button {
     width: 80px;
     height: 30px;
     text-align: center;
@@ -49,7 +50,7 @@ table {
 
 td {
     border: 1px solid black;
-    background-color:white;
+    background-color: white;
     width: 60px;
     height: 60px;
 }
@@ -58,7 +59,8 @@ img {
     width: 54px;
 }
 
-.Win, .Lose {
+.Win,
+.Lose {
     font-size: 50px;
     color: green;
 }
@@ -66,4 +68,3 @@ img {
 .Lose {
     color: red;
 }
-
