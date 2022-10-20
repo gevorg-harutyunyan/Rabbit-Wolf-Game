@@ -151,7 +151,7 @@ const createGame = (container) => {
     return CHARACTERS[character].availableFields.some(isEqual(matrix[X][Y]))
   }
 
-  const chackWinOrLose = ([X, Y], [newX, newY]) => {
+  const checkWinOrLose = ([X, Y], [newX, newY]) => {
     const isCurrentPositionEqual = isEqual(matrix[X][Y])
     const isNewPositionEqual = isEqual(matrix[newX][newY])
 
@@ -166,8 +166,8 @@ const createGame = (container) => {
   }
 
   const characterStep = ([currentX, currentY], [nextX, nextY]) => {
-    const winOrLose = chackWinOrLose([currentX, currentY], [nextX, nextY])
-    if (winOrLose === "Win" || winOrLose === "Lose") {
+    const winOrLose = checkWinOrLose([currentX, currentY], [nextX, nextY])
+    if (winOrLose) {
       config.isGameInProcess = false
       renderWinOrLose(container, winOrLose)
     }
@@ -237,10 +237,10 @@ const createGame = (container) => {
 
   const stepsPosition = () => {
     return {
-      ["ArrowUp"]: [-1, 0],
-      ["ArrowDown"]: [+1, 0],
-      ["ArrowRight"]: [0, +1],
-      ["ArrowLeft"]: [0, -1],
+      ArrowUp: [-1, 0],
+      ArrowDown: [+1, 0],
+      ArrowRight: [0, +1],
+      ArrowLeft: [0, -1],
     }
   }
 
@@ -298,21 +298,20 @@ const newGame = () => {
 
   container.appendChild(gameBlock)
 
-  document.getElementById("playGameButton-" + id).onclick = () =>
-    game.start(document.getElementById("mapSize-" + id).value)
+  document.getElementById(`playGameButton-${id}`).onclick = () =>
+    game.start(document.getElementById(`mapSize-${id}`).value)
 
-  document.getElementById("deleteGameButton-" + id).onclick = () =>
+  document.getElementById(`deleteGameButton-${id}`).onclick = () =>
     gameBlock.remove()
 
-  const gameContainer = document.getElementById("gameContainer-" + id)
-
-  document.getElementById("ArrowLeft-" + id).onclick = () =>
-    game.event("ArrowLeft")
-  document.getElementById("ArrowUp-" + id).onclick = () => game.event("ArrowUp")
-  document.getElementById("ArrowDown-" + id).onclick = () =>
-    game.event("ArrowDown")
-  document.getElementById("ArrowRight-" + id).onclick = () =>
-    game.event("ArrowRight")
-
+  const gameContainer = document.getElementById(`gameContainer-${id}`)
   const game = createGame(gameContainer)
+
+  document.getElementById(`ArrowLeft-${id}`).onclick = () =>
+    game.event("ArrowLeft")
+  document.getElementById(`ArrowUp-${id}`).onclick = () => game.event("ArrowUp")
+  document.getElementById(`ArrowDown-${id}`).onclick = () =>
+    game.event("ArrowDown")
+  document.getElementById(`ArrowRight-${id}`).onclick = () =>
+    game.event("ArrowRight")
 }
